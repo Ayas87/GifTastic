@@ -1,0 +1,13 @@
+body {
+	background-color: lightgrey;
+}
+
+.append-buttons {
+	min-height: 40px;
+}
+.append-gifs {
+	min-height: 100 vh;
+}
+#topic {
+	margin-bottom: 10px;
+}
