@@ -11,3 +11,7 @@ body {
 #topic {
 	margin-bottom: 10px;
 }
+
+.rendered {
+	margin: 10px;
+}
