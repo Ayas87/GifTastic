@@ -18,7 +18,6 @@ function renderBtns() {
     }
     $('.rendered').on('click', function() {
 		ajaxCall($(this).text());
-		console.log($(this).text())
 	})
 }
 
@@ -42,15 +41,30 @@ function ajaxCall(input) {
 function appendGifs(response) {
     $(".append-gifs").empty();
     for (i = 0; i < 10; i++) {
-        var gifDiv = $("<div class='col-lg-6 text-center'> </div>");
-        var rating = $("<h2>").append("Rating: " + response.data[i].rating);
-        var gifImage = $("<img>").attr("src", response.data[i].images.fixed_height_downsampled.url);
+        var gifDiv = $('<div class="col-lg-6 text-center">');
+        var rating = $('<h2>').append('Rating: ' + response.data[i].rating);
+        var gifImage = $('<img class="topicGif">').attr('src', response.data[i].images.fixed_height_downsampled.url);
         gifImage.attr("data-animated", response.data[i].images.fixed_height_downsampled.url);
-        gifImage.attr("data-still", response.data[i].images.fixed_height_still.url);
-        gifImage.attr("data-status", "animated");
+        gifImage.attr('data-still', response.data[i].images.fixed_height_still.url);
+        gifImage.attr('data-status', 'animated');
         gifDiv.append(rating);
         gifDiv.append(gifImage);
         $(".append-gifs").append(gifDiv);
     }
+    $('.topicGif').on('click', function() {
+    	    pauseClick(this);
+    	})
 }
+
+function pauseClick(input) {
+		if ($(input).attr('data-status') == 'animated') {
+            $(input).attr('src', $(input).attr('data-still'));
+            $(input).attr('data-status', 'still');
+        } else {
+            $(input).attr('src', $(input).attr('data-animated'));
+            $(input).attr('data-status', 'animated');
+        }
+	
+}
+
 renderBtns();
